@@ -1,0 +1,95 @@
+[versions]
+# Core Android and Kotlin
+agp = "8.7.0"                               # Android Gradle Plugin version
+kotlin = "2.0.0"                            # Kotlin version
+coreKtx = "1.13.1"                          # Android Core KTX version
+
+# Testing Libraries
+junit = "4.13.2"                            # JUnit for unit testing
+junitVersion = "1.2.1"                      # JUnit version for AndroidX testing
+espressoCore = "3.6.1"                      # Espresso for UI testing
+
+# Jetpack Libraries
+lifecycleRuntimeKtx = "2.8.6"               # Jetpack Lifecycle support in Kotlin
+activityCompose = "1.9.2"                   # Activity support for Jetpack Compose
+composeBom = "2024.09.03"                   # BOM for managing Jetpack Compose versions
+
+# Firebase (Backend services)
+firebaseBom = "33.4.0"                      # Firebase BOM for version control of Firebase services
+googleServices = "4.4.2"                    # Google Services plugin for Firebase integration
+
+# Dependency Injection (Hilt)
+hiltAndroid = "2.51"                        # Hilt for Dependency Injection in Android
+hiltNavigationCompose = "1.2.0"             # Hilt integration for Jetpack Compose Navigation
+
+# UI and Other Libraries
+coilCompose = "2.4.0"                       # Coil for image loading in Jetpack Compose
+materialIconsExtended = "1.7.3"             # Extended material icons for Compose
+runtimeLivedata = "1.7.3"                   # LiveData support for Jetpack Compose
+serialization = "1.6.3"                     # Kotlinx Serialization library
+navigationCompose = "2.8.2"                 # Navigation component for Compose
+kotlinxCoroutinesPlayServices = "1.7.3"     # Kotlin Coroutines for Google Play Services
+kspVersion = "2.0.20-1.0.24"                # Kotlin Symbol Processing (KSP) version
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+
+[libraries]
+# Android Core & Kotlin
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+
+# Testing
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+
+# Jetpack Compose & Lifecycle
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+# Firebase
+firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-firestore-ktx = { module = "com.google.firebase:firebase-firestore-ktx" }
+firebase-storage-ktx = { module = "com.google.firebase:firebase-storage-ktx" }
+
+# Dependency Injection (Hilt)
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltAndroid" }
+
+# Additional Libraries
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinxCoroutinesPlayServices" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization"}
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
+androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "runtimeLivedata" }
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+
+[plugins]
+# Android & Kotlin Plugins
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+# Dependency Injection
+daggerHilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
+
+# Firebase Services
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+
+# Kotlin Serialization
+kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}
+
+# Kotlin Symbol Processing (KSP)
+ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
+
