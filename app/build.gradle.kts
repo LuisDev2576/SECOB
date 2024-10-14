@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "com.luisdev2576.secob"
-        minSdk = 30
+        minSdk = 29
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -74,6 +74,10 @@ dependencies {
     implementation (libs.firebase.auth.ktx)
     implementation (libs.firebase.firestore.ktx)
     implementation (libs.firebase.storage.ktx)
+    implementation (libs.play.services.auth)
+    implementation (libs.androidx.credentials.v100)
+    implementation (libs.androidx.credentials.play.services.auth.v100)
+    implementation (libs.googleid)
 
     // Dagger - Hilt
     implementation(libs.hilt.android)
