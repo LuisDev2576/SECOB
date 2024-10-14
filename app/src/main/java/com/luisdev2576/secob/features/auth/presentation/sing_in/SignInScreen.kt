@@ -1,43 +1,44 @@
-package com.luisdev2576.secob.features.auth.presentation.sing_in
+package com.luisdev2576.secob.features.auth.presentation.sign_in
 
+import android.app.Activity
 import android.widget.Toast
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocal
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
-import kotlin.let
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun SignInScreen(
-    state: SignInState,
-    onSignInClick: () -> Unit
+    activity: Activity,
+    viewModel: SignInViewModel,
+    onSignInSuccess: () -> Unit
 ) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
-    LaunchedEffect(key1 = state.signInError) {
+
+    LaunchedEffect(state.isSignInSuccessful) {
+        if (state.isSignInSuccessful) {
+            Toast.makeText(context, "Sign in successful", Toast.LENGTH_LONG).show()
+            viewModel.resetState()
+            onSignInSuccess()
+        }
+    }
+
+    LaunchedEffect(state.signInError) {
         state.signInError?.let { error ->
-            Toast.makeText(
-                context,
-                error,
-                Toast.LENGTH_LONG
-            ).show()
+            Toast.makeText(context, error, Toast.LENGTH_LONG).show()
         }
     }
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+        modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Button(onClick = onSignInClick) {
+        Button(onClick = { viewModel.onSignInClick(activity) }) {
             Text(text = "Sign in")
         }
     }

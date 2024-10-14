@@ -1,4 +1,4 @@
-package com.luisdev2576.secob.features.auth.presentation.sing_in
+package com.luisdev2576.secob.features.auth.data.repository
 
 import android.app.Activity
 import android.content.Context
@@ -12,10 +12,11 @@ import androidx.credentials.exceptions.NoCredentialException
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.auth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.luisdev2576.secob.R
+import com.luisdev2576.secob.features.auth.domain.model.SignInResult
+import com.luisdev2576.secob.features.auth.domain.model.UserData
 import kotlinx.coroutines.tasks.await
 import java.security.SecureRandom
 import java.util.Base64
