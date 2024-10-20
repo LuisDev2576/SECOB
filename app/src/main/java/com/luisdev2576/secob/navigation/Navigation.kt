@@ -21,9 +21,12 @@ import com.luisdev2576.secob.features.auth.presentation.sing_in.SignInScreen
 import com.luisdev2576.secob.features.auth.presentation.sign_in.SignInViewModel
 import com.luisdev2576.secob.features.auth.presentation.splash_screen.SplashScreen
 import com.luisdev2576.secob.features.auth.presentation.splash_screen.SplashViewModel
+import com.luisdev2576.secob.utils.BiometricPromptManager
 
 @Composable
-fun Navigation() {
+fun Navigation(
+    promptManager: BiometricPromptManager
+) {
     val navHostController = rememberNavController()
     val activity = LocalContext.current as Activity
 
@@ -74,16 +77,17 @@ fun Navigation() {
         }
 
         composable<BiometricsAuthenticationDestination> {
-//            BiometricAuthenticationScreen(
-//
-//            )
-            Column(
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxSize()
-            ) {
-                Text("autenticación biométrica")
-            }
+
+            BiometricAuthenticationScreen(
+                promptManager = promptManager,
+                onBiometricAuthenticationSuccess = {
+                    navHostController.navigate(HomeDestination){
+                        popUpTo(BiometricsAuthenticationDestination) {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
             BackHandler(enabled = true) {
                 // Evitar que el usuario vuelva atrás sin autenticarse
             }
@@ -96,6 +100,9 @@ fun Navigation() {
                 modifier = Modifier.fillMaxSize()
             ) {
                 Text("Home")
+            }
+            BackHandler(enabled = true) {
+                // Evitar que el usuario vuelva atrás sin autenticarse
             }
         }
 

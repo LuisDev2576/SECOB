@@ -11,10 +11,12 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.luisdev2576.secob.navigation.Navigation
 import com.luisdev2576.secob.ui.theme.SECOBTheme
+import com.luisdev2576.secob.utils.BiometricPromptManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+    private val promptManager by lazy { BiometricPromptManager(this) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,7 +25,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    Navigation()
+                    Navigation(promptManager = promptManager)
                 }
             }
         }

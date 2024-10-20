@@ -91,6 +91,7 @@ dependencies {
     implementation (libs.androidx.material.icons.extended)
     implementation (libs.androidx.runtime.livedata)
 
-    implementation (libs.androidx.biometric) // Última versión disponible
+    // Biometric authentication
+    implementation(libs.androidx.biometric)
 
 }
