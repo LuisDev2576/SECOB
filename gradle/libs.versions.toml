@@ -1,11 +1,12 @@
 [versions]
 # Core Android and Kotlin
-agp = "8.7.0"                               # Android Gradle Plugin version
-credentials = "1.5.0-alpha05"
+agp = "8.7.1"                               # Android Gradle Plugin version
+biometric = "1.2.0-alpha05"
+credentials = "1.5.0-alpha06"
 credentialsPlayServicesAuth = "1.3.0"
 credentialsVersion = "1.3.0"
 googleid = "1.1.1"
-kotlin = "2.0.20"                            # Kotlin version
+kotlin = "2.0.20"                           # Kotlin version
 coreKtx = "1.13.1"                          # Android Core KTX version
 
 # Testing Libraries
@@ -15,8 +16,8 @@ espressoCore = "3.6.1"                      # Espresso for UI testing
 
 # Jetpack Libraries
 lifecycleRuntimeKtx = "2.8.6"               # Jetpack Lifecycle support in Kotlin
-activityCompose = "1.9.2"                   # Activity support for Jetpack Compose
-composeBom = "2024.09.03"                   # BOM for managing Jetpack Compose versions
+activityCompose = "1.9.3"                   # Activity support for Jetpack Compose
+composeBom = "2024.10.00"                   # BOM for managing Jetpack Compose versions
 
 # Firebase (Backend services)
 firebaseBom = "33.4.0"                      # Firebase BOM for version control of Firebase services
@@ -28,11 +29,11 @@ hiltNavigationCompose = "1.2.0"             # Hilt integration for Jetpack Compo
 
 # UI and Other Libraries
 coilCompose = "2.4.0"                       # Coil for image loading in Jetpack Compose
-materialIconsExtended = "1.7.3"             # Extended material icons for Compose
+materialIconsExtended = "1.7.4"             # Extended material icons for Compose
 playServicesAuth = "21.2.0"
-runtimeLivedata = "1.7.3"                   # LiveData support for Jetpack Compose
+runtimeLivedata = "1.7.4"                   # LiveData support for Jetpack Compose
 serialization = "1.6.3"                     # Kotlinx Serialization library
-navigationCompose = "2.8.2"                 # Navigation component for Compose
+navigationCompose = "2.8.3"                 # Navigation component for Compose
 kotlinxCoroutinesPlayServices = "1.7.3"     # Kotlin Coroutines for Google Play Services
 kspVersion = "2.0.20-1.0.25"                # Kotlin Symbol Processing (KSP) version
 
@@ -40,13 +41,12 @@ kspVersion = "2.0.20-1.0.25"                # Kotlin Symbol Processing (KSP) ver
 
 [libraries]
 # Android Core & Kotlin
+androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "biometric" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 
 # Testing
-androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentials" }
-androidx-credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials" }
-androidx-credentials-play-services-auth-v100 = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentialsPlayServicesAuth" }
-androidx-credentials-v100 = { module = "androidx.credentials:credentials", version.ref = "credentialsVersion" }
+androidx-credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentialsPlayServicesAuth" }
+androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentialsVersion" }
 googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

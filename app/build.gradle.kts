@@ -44,7 +44,7 @@ android {
 }
 
 dependencies {
-
+    implementation ("androidx.appcompat:appcompat:1.6.1") // Asegúrate de usar la última versión
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -75,8 +75,8 @@ dependencies {
     implementation (libs.firebase.firestore.ktx)
     implementation (libs.firebase.storage.ktx)
     implementation (libs.play.services.auth)
-    implementation (libs.androidx.credentials.v100)
-    implementation (libs.androidx.credentials.play.services.auth.v100)
+    implementation (libs.androidx.credentials)
+    implementation (libs.androidx.credentials.play.services.auth)
     implementation (libs.googleid)
 
     // Dagger - Hilt
@@ -90,4 +90,7 @@ dependencies {
 
     implementation (libs.androidx.material.icons.extended)
     implementation (libs.androidx.runtime.livedata)
+
+    implementation (libs.androidx.biometric) // Última versión disponible
+
 }

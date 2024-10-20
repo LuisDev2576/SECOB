@@ -16,7 +16,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.luisdev2576.secob.features.auth.domain.model.UserData
 
 @Composable
 fun ProfileScreen(
@@ -55,7 +54,7 @@ fun ProfileScreen(
 
         Button(onClick = {
             viewModel.onSignOutClick(activity) {
-                Toast.makeText(context, "Signed out", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Sesión cerrada", Toast.LENGTH_LONG).show()
                 onSignOutSuccess()
             }
         }) {

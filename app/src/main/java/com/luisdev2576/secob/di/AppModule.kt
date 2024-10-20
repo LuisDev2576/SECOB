@@ -4,6 +4,7 @@ package com.luisdev2576.secob.di
 import android.app.Application
 import com.luisdev2576.secob.features.auth.data.repository.AuthRepositoryImpl
 import com.luisdev2576.secob.features.auth.domain.repository.AuthRepository
+import com.luisdev2576.secob.features.auth.domain.use_case.GetSignedInUser
 import com.luisdev2576.secob.features.auth.domain.use_case.SignInUseCase
 import com.luisdev2576.secob.features.auth.domain.use_case.SignOutUseCase
 import dagger.Module
@@ -34,5 +35,11 @@ class AppModule {
     @Singleton
     fun provideSignOutUseCase(authRepository: AuthRepository): SignOutUseCase {
         return SignOutUseCase(authRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetSignedInUserUseCase(authRepository: AuthRepository): GetSignedInUser {
+        return GetSignedInUser(authRepository)
     }
 }

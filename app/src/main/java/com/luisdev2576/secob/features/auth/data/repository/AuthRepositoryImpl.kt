@@ -1,5 +1,3 @@
-// features/auth/data/repository/AuthRepositoryImpl.kt
-
 package com.luisdev2576.secob.features.auth.data.repository
 
 import android.app.Activity

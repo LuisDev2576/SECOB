@@ -1,5 +1,4 @@
-
-package com.luisdev2576.secob.features.auth.presentation.sign_in
+package com.luisdev2576.secob.features.auth.presentation.splash_screen
 
 import android.app.Activity
 import androidx.lifecycle.ViewModel
@@ -16,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignInViewModel @Inject constructor(
+class SplashViewModel @Inject constructor(
     private val signInUseCase: SignInUseCase,
     private val getSignedInUserUseCase: GetSignedInUser
 ) : ViewModel() {
