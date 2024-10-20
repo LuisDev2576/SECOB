@@ -14,6 +14,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.luisdev2576.secob.features.auth.presentation.biometric_auth.BiometricAuthViewModel
 import com.luisdev2576.secob.features.auth.presentation.biometric_auth.BiometricAuthenticationScreen
 import com.luisdev2576.secob.features.auth.presentation.profile.ProfileScreen
 import com.luisdev2576.secob.features.auth.presentation.profile.ProfileViewModel
@@ -77,11 +78,20 @@ fun Navigation(
         }
 
         composable<BiometricsAuthenticationDestination> {
-
+            val biometricAuthViewModel: BiometricAuthViewModel = hiltViewModel()
             BiometricAuthenticationScreen(
+                activity = activity,
                 promptManager = promptManager,
                 onBiometricAuthenticationSuccess = {
                     navHostController.navigate(HomeDestination){
+                        popUpTo(BiometricsAuthenticationDestination) {
+                            inclusive = true
+                        }
+                    }
+                },
+                viewModel = biometricAuthViewModel,
+                onSignOut = {
+                    navHostController.navigate(SignInDestination) {
                         popUpTo(BiometricsAuthenticationDestination) {
                             inclusive = true
                         }

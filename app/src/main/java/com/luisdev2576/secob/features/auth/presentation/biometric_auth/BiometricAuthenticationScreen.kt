@@ -39,8 +39,11 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BiometricAuthenticationScreen(
+    activity: Activity,
     promptManager: BiometricPromptManager,
     onBiometricAuthenticationSuccess: () -> Unit,
+    viewModel: BiometricAuthViewModel,
+    onSignOut: () -> Unit
 ) {
     val biometricResult by promptManager.promptResults.collectAsState(
         initial = null
@@ -101,7 +104,7 @@ fun BiometricAuthenticationScreen(
                     Button(
                         onClick = {
                             promptManager.showBiometricPrompt(
-                                title = "Capa de seguridad biometríca",
+                                title = "Capa de seguridad biométrica",
                                 description = "Ingrese con su huella dactilar, reconocimiento facial o de iris"
                             )
                         },
@@ -116,8 +119,29 @@ fun BiometricAuthenticationScreen(
                         shape = MaterialTheme.shapes.extraLarge,
                     ) {
                         Text(text = "Iniciar verificación de identidad")
-
                     }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Button(
+                        onClick = {
+                            viewModel.onSignOut(activity) {
+                                onSignOut() // Llamada para navegar a la pantalla de inicio de sesión
+                            }
+                        },
+                        enabled = true,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(56.dp),
+                        colors = ButtonDefaults.elevatedButtonColors(
+                            containerColor = MaterialTheme.colorScheme.background
+                        ),
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+                        shape = MaterialTheme.shapes.extraLarge,
+                    ) {
+                        Text(text = "Cerrar sesión")
+                    }
+
                     Spacer(
                         modifier = Modifier
                             .fillMaxWidth()
