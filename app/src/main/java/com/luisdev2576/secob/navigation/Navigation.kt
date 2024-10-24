@@ -2,33 +2,35 @@ package com.luisdev2576.secob.navigation
 
 import android.app.Activity
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.luisdev2576.secob.features.auth.presentation.biometric_auth.BiometricAuthViewModel
 import com.luisdev2576.secob.features.auth.presentation.biometric_auth.BiometricAuthenticationScreen
-import com.luisdev2576.secob.features.auth.presentation.profile.ProfileScreen
-import com.luisdev2576.secob.features.auth.presentation.profile.ProfileViewModel
-import com.luisdev2576.secob.features.auth.presentation.sing_in.SignInScreen
 import com.luisdev2576.secob.features.auth.presentation.sign_in.SignInViewModel
+import com.luisdev2576.secob.features.auth.presentation.sing_in.SignInScreen
 import com.luisdev2576.secob.features.auth.presentation.splash_screen.SplashScreen
 import com.luisdev2576.secob.features.auth.presentation.splash_screen.SplashViewModel
+import com.luisdev2576.secob.features.denuncias.presentation.new_denuncia.NewDenunciaScreen
+import com.luisdev2576.secob.features.lideres.presentation.new_lider.NewLiderScreen
 import com.luisdev2576.secob.utils.BiometricPromptManager
 
 @Composable
 fun Navigation(
-    promptManager: BiometricPromptManager
+    promptManager: BiometricPromptManager,
+    navHostController: NavHostController
 ) {
-    val navHostController = rememberNavController()
     val activity = LocalContext.current as Activity
 
     NavHost(
@@ -83,7 +85,7 @@ fun Navigation(
                 activity = activity,
                 promptManager = promptManager,
                 onBiometricAuthenticationSuccess = {
-                    navHostController.navigate(HomeDestination){
+                    navHostController.navigate(LideresHomeDestination){
                         popUpTo(BiometricsAuthenticationDestination) {
                             inclusive = true
                         }
@@ -103,16 +105,46 @@ fun Navigation(
             }
         }
 
-        composable<HomeDestination> {
+        composable<LideresHomeDestination> {
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.background)
+                    .fillMaxSize()
             ) {
-                Text("Home")
+                Text("Lideres")
             }
             BackHandler(enabled = true) {
                 // Evitar que el usuario vuelva atrás sin autenticarse
+            }
+        }
+
+        composable<DenunciasHomeDestination> {
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.background)
+                    .fillMaxSize()
+            ) {
+                Text("Denuncias")
+            }
+            BackHandler(enabled = true) {
+                // Evitar que el usuario vuelva atrás sin autenticarse
+            }
+        }
+
+        composable<NewDenunciaDestination> {
+            NewDenunciaScreen()
+            BackHandler(enabled = true) {
+                navHostController.navigate(DenunciasHomeDestination)
+            }
+        }
+        composable<NewLiderDestination> {
+            NewLiderScreen()
+            BackHandler(enabled = true) {
+                navHostController.navigate(LideresHomeDestination)
             }
         }
 

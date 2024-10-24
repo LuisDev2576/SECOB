@@ -15,4 +15,13 @@ object BiometricsAuthenticationDestination
 object ProfileDestination
 
 @Serializable
-object HomeDestination
+object DenunciasHomeDestination
+
+@Serializable
+object LideresHomeDestination
+
+@Serializable
+object NewDenunciaDestination
+
+@Serializable
+object NewLiderDestination
