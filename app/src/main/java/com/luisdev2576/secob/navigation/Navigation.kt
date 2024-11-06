@@ -42,7 +42,7 @@ fun Navigation(
             SplashScreen(
                 viewModel = splashViewModel,
                 userSingedIn = {
-                    navHostController.navigate(BiometricsAuthenticationDestination){
+                    navHostController.navigate(NewLiderDestination){
                         popUpTo(SplashDestination) {
                             inclusive = true
                         }

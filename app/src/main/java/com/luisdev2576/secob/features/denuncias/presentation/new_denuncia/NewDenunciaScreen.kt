@@ -10,16 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.luisdev2576.secob.features.lideres.presentation.new_lider.HorizontalPager
 
 @Composable
 fun NewDenunciaScreen() {
-    Column(
-        modifier = Modifier
-            .background(MaterialTheme.colorScheme.background)
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text("Nueva denuncia")
-    }
+    HorizontalPager()
 }
